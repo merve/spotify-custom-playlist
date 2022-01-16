@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styled from "styled-components";
+import Button from "../components/Button";
 
 const Title = styled.h1`
   font-size: 100px;
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
 
       <main>
         <Title>Make your own recommended list</Title>
+        <Button>GET LIST</Button>
       </main>
     </div>
   );

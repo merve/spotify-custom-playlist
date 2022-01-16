@@ -1,0 +1,68 @@
+import { createGlobalStyle } from "styled-components";
+
+export const breakpoints = {
+  xxs: "320px",
+  xs: "576px",
+  sm: "768px",
+  md: "992px",
+  lg: "1200px",
+  xl: "1440px",
+};
+
+const _breakpointsReverse = {
+  xxs: "319.98px",
+  xs: "575.98px",
+  sm: "767.98px",
+  md: "991.98px",
+  lg: "1199.98px",
+  xl: "1339.98px",
+};
+
+export const size = {
+  maxMobileXS: `(max-width: ${breakpoints.xxs})`,
+  maxMobileS: `(max-width: ${breakpoints.xs})`,
+  maxMobile: `(max-width: ${breakpoints.sm})`,
+  maxTablet: `(max-width: ${breakpoints.md})`,
+  maxDesktop: `(max-width: ${breakpoints.lg})`,
+  maxDesktopXL: `(max-width: ${breakpoints.xl})`,
+
+  minMobileXS: `(min-width: ${_breakpointsReverse.xxs})`,
+  minMobileS: `(min-width: ${_breakpointsReverse.xs})`,
+  minMobile: `(min-width: ${_breakpointsReverse.sm})`,
+  minTablet: `(min-width: ${_breakpointsReverse.md})`,
+  minDesktop: `(min-width: ${_breakpointsReverse.lg})`,
+  minDesktopXL: `(min-width: ${_breakpointsReverse.xl})`,
+};
+
+export const fontDef = {
+  h1: { size: "78px", weight: 700 },
+  h2: { size: "54px", weight: 700 },
+  h3: { size: "48px", weight: 700 },
+  h4: { size: "36px", weight: 700 },
+  h5: { size: "30px", weight: 700 },
+  h6: { size: "24px", weight: 400 },
+  p: { size: "20px", weight: 400 },
+  body: { size: "16px", weight: 400 },
+  body2: { size: "14px", weight: 400 },
+  small: { size: "12px", weight: 400 },
+};
+
+export const GlobalStyle = createGlobalStyle`
+  :root {
+    --color-primary    : #1DB954;
+    --color-primary-light: #1ed760;
+    --color-black        : #000000;
+    --color-white        : #ffffff;
+  }
+
+  *,html{
+    font-family: Helvetica, sans-serif;
+    transition: color 0.2s, background-color 0.2s;
+    box-sizing: border-box;
+  }
+  body{
+    padding:0;
+    margin: 0 auto;
+  }
+
+`;
