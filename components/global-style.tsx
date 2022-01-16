@@ -35,23 +35,23 @@ export const size = {
 };
 
 export const fontDef = {
-  h1: { size: "78px", weight: 700 },
-  h2: { size: "54px", weight: 700 },
-  h3: { size: "48px", weight: 700 },
-  h4: { size: "36px", weight: 700 },
-  h5: { size: "30px", weight: 700 },
-  h6: { size: "24px", weight: 400 },
-  bodyLarge: { size: "20px", weight: 400 },
-  body: { size: "16px", weight: 400 },
-  bodySmall: { size: "14px", weight: 400 },
-  small: { size: "12px", weight: 400 },
+  h1: { size: "78px", mobileSize: "32px", weight: 700 },
+  h2: { size: "54px", mobileSize: "30px", weight: 700 },
+  h3: { size: "48px", mobileSize: "28px", weight: 700 },
+  h4: { size: "36px", mobileSize: "26px", weight: 700 },
+  h5: { size: "30px", mobileSize: "24px", weight: 700 },
+  h6: { size: "24px", mobileSize: "20px", weight: 400 },
+  bodyLarge: { size: "20px", mobileSize: "16px", weight: 400 },
+  body: { size: "16px", mobileSize: "14px", weight: 400 },
+  bodySmall: { size: "14px", mobileSize: "12px", weight: 400 },
+  small: { size: "12px", mobileSize: "10px", weight: 400 },
 };
 
 export const GlobalStyle = createGlobalStyle`
   :root {
     --color-primary    : #1DB954;
     --color-primary-light: #1ed760;
-    --color-black        : #000000;
+    --color-black        : #121212;
     --color-white        : #ffffff;
   }
 

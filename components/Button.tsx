@@ -22,7 +22,7 @@ const StyledButton = styled.button<IButtonProps>`
   border: none;
   cursor: pointer;
   line-height: 1;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   ${(p) => p.width && `width: ${convertValue(p.width)};`};
   ${(p) => p.height && `height: ${convertValue(p.height)};`};
   ${(p) => p.color && `color: ${p.color};`};
@@ -46,7 +46,7 @@ export const Button: React.FC<Props> = (props: Props): JSX.Element => {
 };
 
 Button.defaultProps = {
-  color: "var(--color-white)",
+  color: "var(--color-black)",
   backgroundColor: "var(--color-primary)",
   hoverBackgroundColor: "var(--color-primary-light)",
   padding: "14px 32px",

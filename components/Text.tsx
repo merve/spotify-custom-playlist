@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import styled from "styled-components";
 
-import { fontDef } from "./global-style";
+import { fontDef, size } from "./global-style";
 
 export type TextType =
   | "h1"
@@ -26,7 +26,7 @@ interface BaseTextProps {
   textAlign?: "center" | "inherit" | "justify" | "left" | "right";
   margin?: string;
   padding?: string;
-
+  maxWidth?: string;
   color?: string;
 }
 
@@ -34,6 +34,9 @@ const mapStyleToType = (type: TextType): string => {
   return `
         font-size: ${fontDef[type].size};
         font-weight: ${fontDef[type].weight};
+        @media ${size.maxMobile} {
+          font-size: ${fontDef[type].mobileSize};
+        }
     `;
 };
 
@@ -47,7 +50,7 @@ export const BaseText = styled.div<BaseTextProps>`
     ${(p) => p.textAlign && `text-align: ${p.textAlign};`}
     ${(p) => `margin: ${p.margin ?? 0};`}
     ${(p) => `padding: ${p.padding ?? 0};`}
-
+    ${(p) => p.maxWidth && `max-width: ${p.maxWidth};`}
     ${(p) => p.color && `color: ${p.color};`}
 `;
 
