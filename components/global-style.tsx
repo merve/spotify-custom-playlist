@@ -41,9 +41,9 @@ export const fontDef = {
   h4: { size: "36px", weight: 700 },
   h5: { size: "30px", weight: 700 },
   h6: { size: "24px", weight: 400 },
-  p: { size: "20px", weight: 400 },
+  bodyLarge: { size: "20px", weight: 400 },
   body: { size: "16px", weight: 400 },
-  body2: { size: "14px", weight: 400 },
+  bodySmall: { size: "14px", weight: 400 },
   small: { size: "12px", weight: 400 },
 };
 

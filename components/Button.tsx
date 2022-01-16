@@ -53,7 +53,7 @@ Button.defaultProps = {
   margin: "0",
   borderRadius: "100px",
   fontWeight: 700,
-  fontSize: fontDef.body2.size,
+  fontSize: fontDef.bodySmall.size,
 };
 
 export default Button;
