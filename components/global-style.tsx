@@ -43,8 +43,8 @@ export const fontDef = {
   h6: { size: "24px", mobileSize: "20px", weight: 400 },
   bodyLarge: { size: "20px", mobileSize: "16px", weight: 400 },
   body: { size: "16px", mobileSize: "14px", weight: 400 },
-  bodySmall: { size: "14px", mobileSize: "12px", weight: 400 },
-  small: { size: "12px", mobileSize: "10px", weight: 400 },
+  bodySmall: { size: "14px", mobileSize: "14px", weight: 400 },
+  small: { size: "12px", mobileSize: "12px", weight: 400 },
 };
 
 export const GlobalStyle = createGlobalStyle`
@@ -59,10 +59,12 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Helvetica, sans-serif;
     transition: color 0.2s, background-color 0.2s;
     box-sizing: border-box;
+    
   }
   body{
     padding:0;
     margin: 0 auto;
+    background-color: var(--color-black);
   }
 
 `;

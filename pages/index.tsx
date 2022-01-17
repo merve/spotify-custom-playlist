@@ -1,6 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
+import Text from "../components/Text";
+import styled from "styled-components";
+
+const StyledHome = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Home: NextPage = () => {
   return (
@@ -13,11 +19,17 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Link href="/login">
-          <a> Login page</a>
-        </Link>
-      </main>
+      <StyledHome>
+        <Text
+          tag="h1"
+          type="h2"
+          margin="96px auto 32px auto"
+          textAlign="center"
+          color="var(--color-white)"
+        >
+          Select songs for your special playlist
+        </Text>
+      </StyledHome>
     </>
   );
 };

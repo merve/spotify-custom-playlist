@@ -6,7 +6,8 @@ import Logo from "../public/assets/logo";
 import { size } from "../components/global-style";
 
 const StyledLogin = styled.div`
-  background-color: var(--color-black);
+  display: flex;
+  flex-direction: column;
   text-align: center;
   height: 100vh;
   background-image: url("/assets/login-bg.png");
@@ -23,6 +24,7 @@ const StyledLogin = styled.div`
 const LogoWrapper = styled.div`
   padding-top: 72px;
   padding-bottom: 8%;
+  margin: 0;
 `;
 
 const Login: React.FC = (): JSX.Element => {
