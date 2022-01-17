@@ -1,15 +1,16 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import Text from "../components/Text";
 import styled from "styled-components";
 
-const Title = styled.h1`
-  font-size: 100px;
-  text-align: center;
-  color: palevioletred;
+const StyledHome = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
+
 const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>Spotify custom playlist</title>
         <meta
@@ -18,11 +19,18 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main>
-        <Title>Make your own recommended list</Title>
-      </main>
-    </div>
+      <StyledHome>
+        <Text
+          tag="h1"
+          type="h2"
+          margin="96px auto 32px auto"
+          textAlign="center"
+          color="var(--color-white)"
+        >
+          Select songs for your special playlist
+        </Text>
+      </StyledHome>
+    </>
   );
 };
 
