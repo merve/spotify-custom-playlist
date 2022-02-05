@@ -28,6 +28,7 @@ interface BaseTextProps {
   padding?: string;
   maxWidth?: string;
   color?: string;
+  nowrap?: boolean;
 }
 
 const mapStyleToType = (type: TextType): string => {
@@ -52,6 +53,11 @@ export const BaseText = styled.div<BaseTextProps>`
     ${(p) => `padding: ${p.padding ?? 0};`}
     ${(p) => p.maxWidth && `max-width: ${p.maxWidth};`}
     ${(p) => p.color && `color: ${p.color};`}
+    ${(p) =>
+    p.nowrap &&
+    `text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;`}
 `;
 
 export interface ITextProps

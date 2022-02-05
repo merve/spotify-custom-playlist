@@ -49,22 +49,25 @@ export const fontDef = {
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --color-primary    : #1DB954;
+    --color-primary : #1DB954;
     --color-primary-light: #1ed760;
-    --color-black        : #121212;
-    --color-white        : #ffffff;
+    --color-black : #121212;
+    --color-dark : #181818;
+    --color-white : #ffffff;
   }
 
   *,html{
     font-family: Helvetica, sans-serif;
     transition: color 0.2s, background-color 0.2s;
     box-sizing: border-box;
-    
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   body{
     padding:0;
     margin: 0 auto;
     background-color: var(--color-black);
+    
   }
 
 `;
