@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Text from "../components/Text";
-import styled from "styled-components";
 import SongCard from "../components/SongCard";
-import { size } from "../components/global-style";
 import Button from "../components/Button";
+import { size } from "../components/global-style";
+import styled from "styled-components";
 
 const StyledHome = styled.div`
   display: flex;

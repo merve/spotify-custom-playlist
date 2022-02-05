@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../components/Button";
 import Text from "../components/Text";
-import Logo from "../public/assets/logo";
 import { size } from "../components/global-style";
+import { Svg } from "../components/icons";
 
 const StyledLogin = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const Login: React.FC = (): JSX.Element => {
   return (
     <StyledLogin>
       <LogoWrapper>
-        <Logo color="var(--color-white)" />
+        <Svg type="logo" color="var(--color-white)" />
       </LogoWrapper>
       <Text
         tag="h1"

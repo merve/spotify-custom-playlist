@@ -1,7 +1,8 @@
 import React from "react";
 import IconPlus from "./icon-plus";
 import IconCheck from "./icon-check";
-export type SvgType = "icon-check" | "icon-plus";
+import Logo from "./logo";
+export type SvgType = "logo" | "icon-check" | "icon-plus";
 
 interface Props extends React.SVGProps<SVGSVGElement> {
   type: SvgType;
@@ -11,6 +12,7 @@ interface Props extends React.SVGProps<SVGSVGElement> {
 type ComponentType = React.FC<React.SVGProps<SVGSVGElement>>;
 
 const svgs: Record<SvgType, ComponentType> = {
+  logo: Logo,
   "icon-plus": IconPlus,
   "icon-check": IconCheck,
 };

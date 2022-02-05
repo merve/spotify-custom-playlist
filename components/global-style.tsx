@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const breakpoints = {
+const breakpoints = {
   xxs: "320px",
   xs: "576px",
   sm: "768px",
@@ -67,7 +67,7 @@ export const GlobalStyle = createGlobalStyle`
     padding:0;
     margin: 0 auto;
     background-color: var(--color-black);
-    
+
   }
 
 `;
