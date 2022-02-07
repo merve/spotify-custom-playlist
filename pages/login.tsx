@@ -28,6 +28,17 @@ const LogoWrapper = styled.div`
 `;
 
 const Login: React.FC = (): JSX.Element => {
+  const reqLogin = () => {
+    const url = process.env.SPOTIFY_URL;
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const redirectURI = process.env.SPOTIFY_REDIRECT_URL;
+    const scopes =
+      "user-top-read streaming user-read-email user-read-private user-read-playback-state user-modify-playback-state ";
+    const scope = encodeURIComponent(scopes);
+    const loginURL = `${url}?client_id=${clientId}&response_type=token&scope=${scope}&redirect_uri=${redirectURI}`;
+    window.location.href = loginURL;
+  };
+
   return (
     <StyledLogin>
       <LogoWrapper>
@@ -43,7 +54,9 @@ const Login: React.FC = (): JSX.Element => {
       >
         Make your own recommended list
       </Text>
-      <Button margin="0 auto">LOGIN WITH SPOTIFY</Button>
+      <Button margin="0 auto" onClick={() => reqLogin()}>
+        LOGIN WITH SPOTIFY
+      </Button>
     </StyledLogin>
   );
 };

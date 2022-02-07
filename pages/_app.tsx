@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyle />
       <Head>
-        <title>Song Recommender</title>
+        <title>Song Recommender | Spotify</title>
         <meta name="msapplication-TileColor" content="#1DB954" />
         <meta name="theme-color" content="#ffffff"></meta>
       </Head>
