@@ -54,6 +54,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-black : #121212;
     --color-dark : #181818;
     --color-white : #ffffff;
+    --color-gray: #B3B3B3;
   }
 
   *,html{
