@@ -104,7 +104,7 @@ export const Table: React.FC<Props> = (props): JSX.Element => {
         <div>#</div>
         <div>TITLE</div>
         <div>ALBUM</div>
-        <div>DATE ADDED</div>
+        <div style={{ textAlign: "right" }}>DATE ADDED</div>
         <div>
           <Svg type="icon-duration" />
         </div>
@@ -135,7 +135,11 @@ export const Table: React.FC<Props> = (props): JSX.Element => {
               </Text>
             </div>
             <div>
-              <Text type="bodySmall" color="var(--color-gray)">
+              <Text
+                type="bodySmall"
+                color="var(--color-gray)"
+                textAlign="right"
+              >
                 {item.date}
               </Text>
             </div>

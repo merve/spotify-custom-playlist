@@ -3,16 +3,17 @@ import Text from "../components/Text";
 import { Svg } from "./icons";
 import { size } from "../components/global-style";
 import useWindowSize from "../helpers/useWindowSize";
-import { useState } from "react";
-interface Props {
-  img: string;
-  name: string;
-  artists: string;
+import TrackModel from "../types/track.types";
+
+interface SongCardProps {
   selected?: boolean;
 }
-interface SongCardProps {
-  select?: boolean;
+export interface ITrackProps {
+  track: SpotifyApi.TrackObjectFull;
+  selected: boolean;
+  onClick: (track: TrackModel) => void;
 }
+
 const Icon = styled.div<SongCardProps>`
   visibility: hidden;
   height: 32px;
@@ -29,7 +30,7 @@ const Icon = styled.div<SongCardProps>`
   @media ${size.maxMobile} {
     visibility: visible;
     background-color: var(--color-dark);
-    ${(p) => !p.select && `border: 1px solid var(--color-white);`};
+    ${(p) => !p.selected && `border: 1px solid var(--color-white);`};
     top: 10px;
     right: 10px;
   }
@@ -63,47 +64,38 @@ const Card = styled.div<SongCardProps>`
     }
   }
 `;
-const Input = styled.input`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-`;
+
 const StyledSongCard = styled.div<SongCardProps>`
+  cursor: pointer;
   position: relative;
   padding: 10px;
   border-radius: 8px;
   border: 5px solid
-    ${(p) => (p.select ? `var(--color-primary)` : `var(--color-black)`)};
+    ${(p) => (p.selected ? `var(--color-primary)` : `var(--color-black)`)};
   background-color: var(--color-dark);
-
+  @media ${size.maxMobile} {
+    width: 100%;
+  }
   input:checked + div {
     border-color: var(--color-primary);
   }
   &:hover ${Icon} {
-    ${(p) => !p.select && `visibility: visible;`};
+    ${(p) => !p.selected && `visibility: visible;`};
     transition: all 0.8s;
   }
 `;
 
-export const SongCard: React.FC<Props> = (props): JSX.Element => {
+export const SongCard: React.FC<ITrackProps> = (props): JSX.Element => {
+  const { track } = props;
   const { width } = useWindowSize();
-  const [select, setSelect] = useState(props.selected);
+  const toggle = () => {
+    props.onClick(props.track);
+  };
+
   return (
-    <StyledSongCard select={select}>
-      <Input
-        type="checkbox"
-        onClick={() => setSelect(!select)}
-        checked={select}
-      />
-      <Card {...props}>
-        <Image src={props.img} alt={props.name} />
+    <StyledSongCard selected={props.selected} onClick={toggle}>
+      <Card>
+        <Image src={track.album.images[0].url} alt={track.name} />
         <div>
           <Text
             type="body"
@@ -112,15 +104,15 @@ export const SongCard: React.FC<Props> = (props): JSX.Element => {
             fontWeight={700}
             nowrap
           >
-            {props.name}
+            {track.name}
           </Text>
           <Text type="small" color="var(--color-white)" nowrap>
-            {props.artists}
+            {track.artists.map((artist: any) => `${artist.name}`).join(", ")}
           </Text>
         </div>
       </Card>
-      <Icon {...props} select={select}>
-        {select && width < 900 ? (
+      <Icon selected={props.selected}>
+        {props.selected && width < 900 ? (
           <Svg type="icon-check" height={32} fill="var(--color-primary)" />
         ) : (
           <Svg type="icon-plus" height={12} />

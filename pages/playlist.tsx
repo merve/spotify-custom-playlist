@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
@@ -6,6 +7,9 @@ import { Svg } from "../components/icons";
 import Text from "../components/Text";
 import Table from "../components/Table";
 import { size } from "../components/global-style";
+import SpotifyWebApi from "spotify-web-api-js";
+
+const spotify = new SpotifyWebApi();
 
 const StyledPlaylist = styled.div`
   color: var(--color-white);
@@ -61,8 +65,69 @@ const List = [
     date: "Nov 21, 2021",
   },
 ];
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+}
+const monthNames = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
+function convertDate(dateString) {
+  var date = new Date(dateString);
+  return (
+    monthNames[date.getMonth()] +
+    " " +
+    date.getDate() +
+    "," +
+    date.getFullYear()
+  );
+}
 
 const Playlist: NextPage = () => {
+  const router = useRouter();
+  const [list, setList] = useState<any | []>([]);
+  useEffect(() => {
+    const getRecommendations = async () => {
+      try {
+        const recommendations = await spotify.getRecommendations({
+          seed_tracks: localStorage.getItem("selectedTracks")!,
+        });
+        const tracks: string[] = recommendations.tracks.map((rt) => rt.id);
+        const tracksResult = await spotify.getTracks(tracks);
+        console.log(tracksResult.tracks);
+        const formattedList = tracksResult.tracks.map((item) => ({
+          id: item.track_number,
+          songName: item.name,
+          artist: item.artists
+            .map((artist: any) => `${artist.name}`)
+            .join(", "),
+          album: item.album.name,
+          duration: millisToMinutesAndSeconds(item.duration_ms),
+          img: item.album.images[0].url,
+          date: convertDate(item.album.release_date),
+        }));
+        setList(formattedList);
+      } catch (error: any) {
+        if (error.status === 401) {
+          router.push("/");
+        }
+      }
+    };
+    getRecommendations();
+  }, []);
+
   return (
     <StyledPlaylist>
       <Svg type="logo" />
@@ -79,7 +144,7 @@ const Playlist: NextPage = () => {
         <Svg type="icon-heart" />
         <Svg type="icon-dots" />
       </ActionGroup>
-      <Table list={List} />
+      <Table list={list} />
     </StyledPlaylist>
   );
 };
