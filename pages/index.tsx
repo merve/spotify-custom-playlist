@@ -47,7 +47,7 @@ const Home: NextPage = () => {
       }
     };
     fetchData();
-  });
+  }, []);
 
   const handleClick = (trackId: string) => {
     const index = selectedTracks.indexOf(trackId);

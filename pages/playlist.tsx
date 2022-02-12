@@ -45,30 +45,10 @@ const IconPlay = styled.div`
   padding-left: 3px;
 `;
 
-const List = [
-  {
-    id: 1,
-    songName: "I Like You",
-    artist: "Docteur H, Yaleil",
-    album: "Padre Mío",
-    duration: "4:09",
-    img: "https://i.scdn.co/image/ab67616d00004851973222b7d8d3453882181589",
-    date: "Nov 27, 2021",
-  },
-  {
-    id: 2,
-    songName: "Playground (from the series Arcane League of Legends)",
-    artist: "Bea Miller, Arcane",
-    album: "Playground (from the series Arcane League of Legends)",
-    duration: "3:50",
-    img: "https://i.scdn.co/image/ab67616d0000485142a8ac055d1b28af6e12d2ff",
-    date: "Nov 21, 2021",
-  },
-];
-function millisToMinutesAndSeconds(millis) {
-  var minutes = Math.floor(millis / 60000);
-  var seconds = ((millis % 60000) / 1000).toFixed(0);
-  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+function millisToMinutesAndSeconds(millis: number) {
+  let minutes = Math.floor(millis / 60000);
+  let seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds;
 }
 const monthNames = [
   "Jan",
@@ -84,7 +64,7 @@ const monthNames = [
   "Nov",
   "Dec",
 ];
-function convertDate(dateString) {
+function convertDate(dateString: any) {
   var date = new Date(dateString);
   return (
     monthNames[date.getMonth()] +
@@ -107,6 +87,7 @@ const Playlist: NextPage = () => {
         const tracks: string[] = recommendations.tracks.map((rt) => rt.id);
         const tracksResult = await spotify.getTracks(tracks);
         console.log(tracksResult.tracks);
+
         const formattedList = tracksResult.tracks.map((item) => ({
           id: item.track_number,
           songName: item.name,
@@ -116,7 +97,7 @@ const Playlist: NextPage = () => {
           album: item.album.name,
           duration: millisToMinutesAndSeconds(item.duration_ms),
           img: item.album.images[0].url,
-          date: convertDate(item.album.release_date),
+          date: convertDate((item as any).album.release_date),
         }));
         setList(formattedList);
       } catch (error: any) {
