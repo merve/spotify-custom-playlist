@@ -1,0 +1,4 @@
+{
+  "access": "jwt",
+  "refresh": "jwt"
+}

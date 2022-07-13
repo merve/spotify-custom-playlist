@@ -8,6 +8,7 @@ import Text from "../components/Text";
 import Table from "../components/Table";
 import { size } from "../components/global-style";
 import SpotifyWebApi from "spotify-web-api-js";
+import Player from "../components/Player";
 
 const spotify = new SpotifyWebApi();
 
@@ -45,9 +46,9 @@ const IconPlay = styled.div`
   padding-left: 3px;
 `;
 
-function millisToMinutesAndSeconds(millis: number) {
-  let minutes = Math.floor(millis / 60000);
-  let seconds = ((millis % 60000) / 1000).toFixed(0);
+function milToMinutesAndSeconds(mil: number) {
+  let minutes = Math.floor(mil / 60000);
+  let seconds = ((mil % 60000) / 1000).toFixed(0);
   return minutes + ":" + (Number(seconds) < 10 ? "0" : "") + seconds;
 }
 const monthNames = [
@@ -95,7 +96,7 @@ const Playlist: NextPage = () => {
             .map((artist: any) => `${artist.name}`)
             .join(", "),
           album: item.album.name,
-          duration: millisToMinutesAndSeconds(item.duration_ms),
+          duration: milToMinutesAndSeconds(item.duration_ms),
           img: item.album.images[0].url,
           date: convertDate((item as any).album.release_date),
         }));
@@ -107,7 +108,7 @@ const Playlist: NextPage = () => {
       }
     };
     getRecommendations();
-  }, []);
+  }, [router]);
 
   return (
     <StyledPlaylist>
@@ -126,6 +127,10 @@ const Playlist: NextPage = () => {
         <Svg type="icon-dots" />
       </ActionGroup>
       <Table list={list} />
+      <Player
+        token={localStorage.getItem("spotify_token")}
+        uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
+      />
     </StyledPlaylist>
   );
 };

@@ -3,6 +3,7 @@
     "next": "^12.0.10",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-spotify-web-playback": "^0.10.0",
     "spotify-web-api-js": "^1.5.2",
     "styled-components": "^5.3.3"
   },
@@ -20,6 +21,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
+    "generate:model": "node generators/modelGenerator.js --lang=ts",
+    "generate:model:watch": "node generators/modelGenerator.js -w --lang=ts",
+    "generate:provider": "node generators/providerGenerator.js",
     "lint": "next lint",
     "start": "next start"
   }
